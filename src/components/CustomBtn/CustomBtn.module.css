@@ -1,0 +1,14 @@
+.btn {
+    cursor: pointer;
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 13px;
+    background: #1C1C1C;
+    color: #FFF;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
