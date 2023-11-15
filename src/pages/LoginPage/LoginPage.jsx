@@ -5,6 +5,7 @@ import Input from '../../components/Input/Input'
 import UserIcon from '../../assets/user.svg'
 import PasswordIcon from '../../assets/password.svg'
 import CustomBtn from '../../components/CustomBtn/CustomBtn'
+import Error from '../../assets/error.svg'
 
 import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
@@ -15,23 +16,24 @@ import axios from 'axios'
 const LoginPage = () => {
     
     const [user, setUser] = useState('')
+    const [error, setError] = useState(false)
     let navigate = useNavigate()
 
     const fetchUsers = async() => {
         try {
             const {data} = await axios.get('https://jsonplaceholder.typicode.com/users')
-            const auth = data.filter( item => item.email === user.email)
-            if(auth.length > 0) {
+            const auth = data.find( item => item.email === user.email)
+            if(auth) {
                 return(navigate('/home'))
             }
         } catch (error) {
             console.log(error)
         }
     }
-    
-    const onSubmit = () => {
-        console.log(user)
-    }
+
+    useEffect(() => {
+        fetchUsers()
+    },[user])
 
     const SignInSchema = Yup.object().shape({
         password: Yup.string()
@@ -44,7 +46,6 @@ const LoginPage = () => {
 
   return (
         <Layout>
-            <div className={styles.errorModal}>Ошибка</div>
             <div className={styles.content}>
                 <div className={styles.content_text}>
                     <h1 className={styles.content_title}>Welcome</h1>
@@ -66,7 +67,7 @@ const LoginPage = () => {
                         {errors.email && touched.email ? <div className={styles.error} >{errors.email}</div> : null}
                         <Input name={'password'} type={'password'} placeholder={'Password'} icon={PasswordIcon}/>
                         {errors.password && touched.password ? <div className={styles.error} >{errors.password}</div> : null}
-                        <CustomBtn fn={fetchUsers} name={'Next'} type={'submit'}/>
+                        <CustomBtn name={'Next'} type={'submit'}/>
                     </Form>
                     
                     )}

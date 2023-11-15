@@ -28,3 +28,8 @@
     color: #1C1C1C;
 }
 
+@media(min-width: 350px) and (max-width: 750px) {
+    .container {
+        width: 250px;
+    }
+}

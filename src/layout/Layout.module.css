@@ -2,9 +2,24 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    width: 1366px;
+    max-width: 1366px;
     height: 768px;
     gap: 20px;
     border-radius: 54px;
     background-color: #fff;
 }
+
+@media(min-width: 350px) and (max-width: 750px) {
+    body {
+        overflow-x: hidden;
+    }
+    .container {
+        width: 300px;
+        height: 600px;
+        padding: 20px;
+        text-align: center;
+    }
+}
+
+
+

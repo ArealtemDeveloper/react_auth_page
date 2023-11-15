@@ -16,8 +16,8 @@ const NotFoundPage = () => {
   return (
     <Layout>
         <div className={styles.container}>
-            <div>
-             <img src={NotFound} alt="not found" />
+            <div className={styles.imgContainer}>
+             <img className={styles.img} src={NotFound} alt="not found" />
             </div>
             <div className={styles.content}>
                 <h1 className={styles.title} >Something went wrong.</h1>
